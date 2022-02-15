@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var redColorCircle = ColorCircle(color: .red, saturation: 0.1)
     //запутался почему не могу использовать так -> color: .red,saturation: lightIsOn
     @State private var yellowColorCircle = ColorCircle(color: .yellow, saturation: 0.1)
+    //не понял как добраться до ColorCircle кроме как -> @State private var greenColor = ColorCircle(co
     @State private var greenColor = ColorCircle(color: .green, saturation: 0.1)
     
     @State private var currentLight = CurrentLight.red
