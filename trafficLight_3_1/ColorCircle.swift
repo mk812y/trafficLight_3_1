@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ColorCircle: View {
     let color: Color
+    var saturation: Double
     
     var body: some View {
         Circle()
@@ -16,12 +17,12 @@ struct ColorCircle: View {
             .frame(width: 150, height: 150)
             .overlay(Circle().stroke(Color.white, lineWidth: 5))
             .padding(.bottom)
-            .brightness(/*@START_MENU_TOKEN@*/0.60/*@END_MENU_TOKEN@*/)
+            .saturation(Double(saturation))
     }
 }
 
 struct ColorCircle_Previews: PreviewProvider {
     static var previews: some View {
-        ColorCircle(color: .red)
+        ColorCircle(color: .red, saturation: 0.1)
     }
 }
