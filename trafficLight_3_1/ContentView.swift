@@ -13,24 +13,21 @@ enum CurrentLight {
 
 struct ContentView: View {
     @State private var buttonText = "start"
-    @State private var redColorCircle = ColorCircle(color: .red, opacity: 0.1)
-    //запутался почему не могу использовать так -> color: .red,saturation: lightIsOn
-    @State private var yellowColorCircle = ColorCircle(color: .yellow, opacity: 0.1)
-    //не понял как добраться до ColorCircle кроме как -> @State private var greenColor = ColorCircle(co
-    @State private var greenColor = ColorCircle(color: .green, opacity: 0.1)
+   
+    @State private var redLightState = 0.1
+    @State private var yellowLightState = 0.1
+    @State private var greenLightState = 0.1
     
     @State private var currentLight = CurrentLight.red
-    private var lightIsOn: Double = 1.0
-    private var lightIsOff: Double = 0.1
     
     var body: some View {
         ZStack{
             Color.black
                 .ignoresSafeArea()
             VStack {
-                redColorCircle
-                yellowColorCircle
-                greenColor
+                ColorCircle(color: .red, opacity: redLightState)
+                ColorCircle(color: .yellow, opacity: yellowLightState)
+                ColorCircle(color: .green, opacity: greenLightState)
                 Spacer()
                 buttom
             }
@@ -60,21 +57,25 @@ struct ContentView: View {
     }
     
     private func trafficLightSwitch() {
+        let lightIsOn: Double = 1.0
+        let lightIsOff: Double = 0.1
+
+        
         switch currentLight {
         case .red:
-            redColorCircle.opacity = lightIsOn
-            yellowColorCircle.opacity = lightIsOff
-            greenColor.opacity = lightIsOff
+            redLightState = lightIsOn
+            yellowLightState = lightIsOff
+            greenLightState = lightIsOff
             currentLight = .yellow
         case .yellow:
-            redColorCircle.opacity = lightIsOff
-            yellowColorCircle.opacity = lightIsOn
-            greenColor.opacity = lightIsOff
+            redLightState = lightIsOff
+            yellowLightState = lightIsOn
+            greenLightState = lightIsOff
             currentLight = .green
         case .green:
-            redColorCircle.opacity = lightIsOff
-            yellowColorCircle.opacity = lightIsOff
-            greenColor.opacity = lightIsOn
+            redLightState = lightIsOff
+            yellowLightState = lightIsOff
+            greenLightState = lightIsOn
             currentLight = .red
         }
     }
